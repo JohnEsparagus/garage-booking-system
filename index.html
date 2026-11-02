@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Garage Booking</title>
+</head>
+<body>
+  <input type="date" id="date" value="2026-11-10">
+  <button id="check">Get free times</button>
+  <pre id="result"></pre>
+
+  <script>
+    const garageId = 1;
+
+    document.getElementById("check").addEventListener("click", async () => {
+      const date = document.getElementById("date").value;
+      const response = await fetch(`/garages/${garageId}/slots?date=${date}`);
+      const data = await response.json();
+      document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+    });
+  </script>
+</body>
+</html>
